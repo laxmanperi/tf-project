@@ -38,7 +38,7 @@ resource "aws_key_pair" "my_WIN_key" {
 }
 
 # Instance-Build
-resource "aws_instance" "my_Build" {
+resource "aws_instance" "my_linux" {
   ami           = var.AWS_AMI[var.AWS_REGION]
   instance_type = "t2.micro"
 
@@ -53,91 +53,12 @@ resource "aws_instance" "my_Build" {
 
   # Tag
   tags = {
-    Name = "Build_Server"
+    Name = "linux"
   }
 
 }
 
-# Instance-Sonar
-resource "aws_instance" "my_Sonar" {
-  ami           = var.AWS_AMI[var.AWS_REGION]
-  instance_type = "t2.medium"
 
-  # Select Subnet
-  subnet_id = aws_subnet.main_public_1.id
-
-  # Select Security Group
-  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
-
-  # Select Key
-  key_name = aws_key_pair.my_WIN_key.id
-
-  # Tag
-  tags = {
-    Name = "my_Sonar"
-  }
-
-}
-# Instance-NEXUS
-resource "aws_instance" "my_NEXUS" {
-  ami           = var.AWS_AMI[var.AWS_REGION]
-  instance_type = "t2.medium"
-
-  # Select Subnet
-  subnet_id = aws_subnet.main_public_1.id
-
-  # Select Security Group
-  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
-
-  # Select Key
-  key_name = aws_key_pair.my_WIN_key.id
-
-  # Tag
-  tags = {
-    Name = "my_NEXUS"
-  }
-
-}
-# Instance-TomcatQA
-resource "aws_instance" "my_TomcatQA" {
-  ami           = var.AWS_AMI[var.AWS_REGION]
-  instance_type = "t2.micro"
-
-  # Select Subnet
-  subnet_id = aws_subnet.main_public_1.id
-
-  # Select Security Group
-  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
-
-  # Select Key
-  key_name = aws_key_pair.my_WIN_key.id
-
-  # Tag
-  tags = {
-    Name = "my_TomcatQA"
-  }
-
-}
-# Instance-TomcatProd
-resource "aws_instance" "my_TomcatProd" {
-  ami           = var.AWS_AMI[var.AWS_REGION]
-  instance_type = "t2.micro"
-
-  # Select Subnet
-  subnet_id = aws_subnet.main_public_1.id
-
-  # Select Security Group
-  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
-
-  # Select Key
-  key_name = aws_key_pair.my_WIN_key.id
-
-  # Tag
-  tags = {
-    Name = "my_TomcatProd"
-  }
-
-}
 
 
 
