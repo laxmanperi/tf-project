@@ -11,7 +11,7 @@ resource "aws_security_group" "allow_ssh" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-   ingress {
+  ingress {
     description = "HTTP from Anywhere"
     from_port   = 80
     to_port     = 80
